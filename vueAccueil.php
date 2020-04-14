@@ -32,36 +32,36 @@
             <th colspan="3">Liste de produits</th>
         </thead>
         <tbody>
-            <?php foreach ($reponses as $donnees): ?>
+            <?php foreach ($produits as $produit): ?>
 
                 <tr>
                     <td rowspan="5" style="max-width: 200px; text-align: center;">
                         <strong>
-                            <?= htmlspecialchars($donnees['nom_produit']) ?>
+                            <?= htmlspecialchars($produit['nom_produit']) ?>
                         </strong>
                     </td>
                 </tr>
                 <tr>
                     <td>Prix unitaire</td>
-                    <td><?= htmlspecialchars($donnees['prix_unitaire']) ?>$</td>
+                    <td><?= htmlspecialchars($produit['prix_unitaire']) ?>$</td>
                 </tr>
                 <tr>
                     <td>Status</td>
                     <td>
                         <em>
-                            <?= htmlspecialchars($donnees['en_stock'] == 0 ? 'Hors stock' : 'En stock') ?>
+                            <?= htmlspecialchars($produit['en_stock'] == 0 ? 'Hors stock' : 'En stock') ?>
                         </em>
                     </td>
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td><?= htmlspecialchars($donnees['description_produit']) ?></td>
+                    <td><?= htmlspecialchars($produit['description_produit']) ?></td>
                 </tr>
                 <tr>
                     <td colspan="2" style="">
-                        <a href="produits_modifier.php?id=<?= htmlspecialchars($donnees['id']) ?>">Modifier</a>
+                        <a href="produits_modifier.php?id=<?= htmlspecialchars($produit['id']) ?>">Modifier</a>
                         &emsp;&emsp;&emsp;
-                        <a href="produits_confirmation.php?id=<?= htmlspecialchars($donnees['id']) ?>">Supprimer</a>
+                        <a href="produits_confirmation.php?id=<?= htmlspecialchars($produit['id']) ?>">Supprimer</a>
                     </td>
                 </tr>
                 </tr>
