@@ -13,7 +13,7 @@
             <div id="contenu">
                 <?= $contenu ?>
             </div>
-            <footer id="piedInvetaire">
+            <footer id="piedInventaire">
                 Inventaire réalisé avec PHP, HTML5 et CSS.
             </footer>
         </div> <!-- #global -->
