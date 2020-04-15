@@ -1,0 +1,73 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 14-Apr-2020, 7:42:04 PM
+    Author     : yasser
+*/
+
+body {
+    background: skyblue;
+}
+
+form {
+    text-align: center;
+}
+
+form input {
+    margin-bottom: 1em;
+}
+
+form label {
+    margin-right: 0.5em;
+} 
+
+header {
+    text-align: center;
+}
+
+th {
+    font-size: 2em;
+}
+
+#global {
+    width: 75%;
+    margin: 0 auto;
+    background: powderblue;
+    border: 4px solid #80b9cc;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#conteneurNomProduit {
+    max-width: 200px;
+    text-align: center;
+}
+
+#nomProduit {
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.75);
+    background: #97c4c9;
+    justify-content: center;
+    height: 5em;
+    align-items: center;
+    display: flex;
+    border-radius: 5px;
+    margin: 8px;
+}
+
+#titreInventaire {
+    text-transform: uppercase;
+}
+
+#piedInvetaire {
+    padding: 10px;
+    color: darkred;
+}
+
+.nomPropriete {
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: right;
+}
