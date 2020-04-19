@@ -7,6 +7,7 @@
         <h1>Commande <?= $commande['id'] ?></h1>
         <h2>Par <?= $commande['nom'] ?></h2>
         <p><?= $commande['details_commande'] ?></p>
+        <h3>Contact : <?= $commande['courriel'] ?></h3>
     </header>
 </article>
 <hr />
