@@ -50,3 +50,18 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+
+
+<form action="produits_post.php" method="post">
+    <p>
+        <label for="nom_produit">Produit</label> : &emsp;
+        <select>
+            <?php foreach ($produits as $produit): ?>
+            <option value="<?= $produit['id'] ?>"><?= htmlspecialchars($produit['nom_produit']) ?></option>
+            <?php endforeach; ?>
+        </select>
+        <br />
+            
+        <input type="submit" value="Ajouter produit" />
+    </p>
+</form>

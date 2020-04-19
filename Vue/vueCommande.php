@@ -15,7 +15,7 @@
         <th colspan="3">Liste de produits</th>
     </thead>
     <tbody>
-        <?php foreach ($produitsComandes as $produit): ?>
+        <?php foreach ($produitsCommandes as $produit): ?>
 
             <tr>
                 <td id="conteneurNomProduit" rowspan="5">
@@ -49,20 +49,16 @@
 <hr />
 
 <h2>Ajouter un produit</h2>
-
-<form action="produits_post.php" method="post">
-    <p>
-        <label for="nom_produit">Produit</label> : &emsp;
-        <select>
-            <?php foreach ($produits as $produit): ?>
-            <option value="<?= $produit['id'] ?>"><?= htmlspecialchars($produit['nom_produit']) ?></option>
-            <?php endforeach; ?>
-        </select>
-        <br />
-            
-        <input type="submit" value="Ajouter produit" />
-    </p>
-</form>
+<div class="listeProduits">
+<?php foreach ($produits as $produit): ?>
+<div class="carte">
+  <h1><?= htmlspecialchars($produit['nom_produit']) ?></h1>
+  <p class="prix"><?= htmlspecialchars($produit['prix_unitaire']) ?> $</p>
+  <p><?= htmlspecialchars($produit['description_produit']) ?></p>
+  <p><button>Ajouter à la commande</button></p>
+</div>
+<?php endforeach; ?>
+</div>
 
 <?php $contenu = ob_get_clean(); ?>
 

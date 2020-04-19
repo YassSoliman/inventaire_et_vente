@@ -71,3 +71,37 @@ th {
     text-decoration: underline;
     text-align: right;
 }
+
+.listeProduits {
+    text-align: center;
+}
+
+.carte {
+  box-shadow: 0 4px 10px 8px rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: 10px;
+  text-align: center;
+  font-family: arial;
+  display: inline-block;
+}
+
+.prix {
+  color: grey;
+  font-size: 22px;
+}
+
+.carte button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.carte button:hover {
+  opacity: 0.7;
+}

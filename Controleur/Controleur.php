@@ -11,7 +11,7 @@ function accueil() {
 // Affiche les détails sur une commande
 function commande($idCommande) {
     $commande = getCommande($idCommande);
-    $produitsComandes = getProduitsCommande($idCommande);
+    $produitsCommandes = getProduitsCommande($idCommande);
     $produits = getProduits();
     require 'vueCommande.php';
 }
