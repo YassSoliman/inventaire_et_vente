@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 
 <p style="text-align: center;">
-    <a href="apropos.html">À propos</a>
+    <a href="index.php?action=apropos">À propos</a>
 </p>
 
 <?php foreach ($commandes as $commande): ?>
@@ -16,4 +16,4 @@
 
 <?php $contenu = ob_get_clean(); ?>
 
-<?php require 'gabarit.php'; ?>
+<?php require 'Vue/gabarit.php'; ?>
