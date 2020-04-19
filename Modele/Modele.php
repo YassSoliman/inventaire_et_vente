@@ -20,7 +20,7 @@ function getCommandes() {
 function getProduitsCommandes() {
     $bdd = getBdd();
 
-    $reponses = $bdd->query('SELECT `commande_id`,'
+    $reponses = $bdd->query('SELECT `Produits_commande`.id, `commande_id`,'
             . ' `produit_id`,'
             . ' `quantite_produit`,'
             . ' `Produits`.`nom_produit`,'
@@ -72,7 +72,7 @@ function getCommande($idCommande) {
 function getProduitsCommande($idCommande) {
     $bdd = getBdd();
 
-    $reponses = $bdd->prepare('SELECT `commande_id`,'
+    $reponses = $bdd->prepare('SELECT `Produits_commande`.id, `commande_id`,'
             . ' `produit_id`,'
             . ' `quantite_produit`,'
             . ' `Produits`.`nom_produit`,'
@@ -90,6 +90,60 @@ function getProduitsCommande($idCommande) {
     $reponses->execute(array($idCommande));
 
     return $reponses;
+}
+
+function getProduitCommande($id) {
+    $bdd = getBdd();
+
+    $reponses = $bdd->prepare('SELECT `Produits_commande`.id, `commande_id`,'
+            . ' `produit_id`,'
+            . ' `quantite_produit`,'
+            . ' `Produits`.`nom_produit`,'
+            . ' `Produits`.`prix_unitaire`,'
+            . ' `Produits`.`description_produit`,'
+            . ' `Commandes`.`details_commande`,'
+            . ' `Utilisateurs`.`nom` '
+            . 'FROM `Produits_commande` '
+            . 'INNER JOIN `Produits` ON `Produits_commande`.`produit_id` = `Produits`.`id` '
+            . 'INNER JOIN `Commandes` ON `Commandes`.`id` = `Produits_commande`.`commande_id` '
+            . 'INNER JOIN `Utilisateurs` ON `Commandes`.`utilisateur_id` = `Utilisateurs`.`id` '
+            . 'WHERE `Produits_commande`.`id`=?'
+            . 'ORDER BY `Produits_commande`.`commande_id` ASC');
+
+    $reponses->execute(array($id));
+
+    return $reponses->fetch();
+}
+
+// Ajoute un produit associés à une commande
+function setProduitCommande($produit, $commande) {
+    $bdd = getBdd();
+    // Verifier si commande contient deja ce produit au moins une fois
+    $validerCommande = $bdd->prepare('SELECT * FROM `Produits_commande` WHERE commande_id = ? AND produit_id = ?');
+    $validerCommande->execute(array($commande['id'], $produit['id']));
+    
+    $produitCommande = $validerCommande->fetch();
+    if($produitCommande){
+        $result = $bdd->prepare('UPDATE `inventaire_et_vente`.`Produits_commande` '
+                . 'SET `quantite_produit` = ? '
+                . 'WHERE `Produits_commande`.`id` = ?;');
+        $nouvelleQte = $produitCommande['quantite_produit'] + 1;
+        $result->execute(array($nouvelleQte, $produitCommande['id']));
+    } else {    
+        $result = $bdd->prepare('INSERT INTO `Produits_commande` (commande_id, produit_id, quantite_produit) VALUES(?, ?, ?)');
+        $result->execute(array($commande['id'], $produit['id'], 1));
+    }
+    
+    return $result;
+}
+
+function deleteProduitCommande($id) {
+    $bdd = getBdd();
+    
+    $result = $bdd->prepare( "DELETE FROM `inventaire_et_vente`.`Produits_commande` WHERE `Produits_commande`.`id` = ?");
+    $result->execute(array($id));
+    
+    return $result;
 }
 
 function getBdd() {

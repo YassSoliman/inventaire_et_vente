@@ -24,3 +24,22 @@ function erreur($msgErreur) {
 function apropos() {
     require 'Vue/vueApropos.php';
 }
+
+// Ajoute un produit à une commande
+function ajouterProduit($produit, $commande) {
+    setProduitCommande($produit, $commande);
+    header('Location: index.php?action=commande&id=' . $commande['id']);
+}
+
+// Supprimer un produit d'une commande
+function supprimerProduitCommande($id) {
+    $produitCommande = getProduitCommande($id);
+    deleteProduitCommande($id);
+    header('Location: index.php?action=commande&id=' . $produitCommande['commande_id']);
+}
+
+// Confirmer la suppression d'un produit dans une commande
+function confirmerProduitCommande($id) {
+    $produitCommande = getProduitCommande($id);
+    require 'Vue/vueConfirmer.php';
+}

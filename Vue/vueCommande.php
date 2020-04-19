@@ -38,7 +38,7 @@
             <td colspan="2" style="">
                 <a href="#">Modifier</a>
                 &emsp;&emsp;&emsp;
-                <a href="#">Supprimer</a>
+                <a href="<?= "index.php?action=confirmerProduitCommande&id=" . $produit['id'] ?>">Supprimer</a>
             </td>
         </tr>
 
@@ -55,7 +55,10 @@
             <h1><?= htmlspecialchars($produit['nom_produit']) ?></h1>
             <p class="prix"><?= htmlspecialchars($produit['prix_unitaire']) ?> $</p>
             <p><?= htmlspecialchars($produit['description_produit']) ?></p>
-            <p><button><a href="<?="index.php?action=ajouterProduit&id=" . $produit['id'] . "&commande_id=" . $commande['id']?>">Ajouter à la commande</a></button>
+            <p><a href="<?= "index.php?action=ajouterProduit&id=" . $produit['id'] . "&commande_id=" . $commande['id'] ?>">
+                    <button>Ajouter à la commande</button>
+                </a>
+            </p>
         </div>
     <?php endforeach; ?>
 </div>
