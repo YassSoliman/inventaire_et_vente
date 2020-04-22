@@ -11,7 +11,7 @@
         <label for="courriel">Courriel</label> :  <input type="text" name="courriel" id="courriel" /><br />
         <?= ($erreur == 'courriel') ? '<span style="color : red;">Entrez un courriel valide s.v.p.</span>' : '' ?> 
         <input type="hidden" name="utilisateur_id" value="1" /><br />
-        <input type="submit" value="Envoyer" />
+        <input type="submit" value="Creer" />
     </p>
 </form>
 

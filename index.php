@@ -6,9 +6,7 @@ try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'apropos') {
             apropos();
-        }
-
-        if ($_GET['action'] == 'commande') {
+        } else if ($_GET['action'] == 'commande') {
             if (isset($_GET['id'])) {
                 $idCommande = intval($_GET['id']);
                 if ($idCommande != 0)
@@ -24,7 +22,6 @@ try {
                 if ($idProduit != 0 && $idCommande != 0) {
                     $produit = getProduit($idProduit);
                     $commande = getCommande($idCommande);
-                    //Réaliser l'action ajouterProduit du contrôleur
                     ajouterProduit($produit, $commande);
                 } else
                     throw new Exception("Identifiant de produit incorrect");
@@ -39,8 +36,6 @@ try {
                     throw new Exception("Identifiant de produit incorrect");
             } else
                 throw new Exception("Aucun identifiant de produit");
-
-            //
         } else if ($_GET['action'] == 'supprimerProduitCommande') {
             if (isset($_POST['id'])) {
                 $idProduitCommande = intval($_POST['id']);
