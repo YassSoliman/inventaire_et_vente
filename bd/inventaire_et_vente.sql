@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2020 at 03:34 AM
+-- Generation Time: Apr 22, 2020 at 11:39 PM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -28,10 +28,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `Commandes` (
   `id` int(11) NOT NULL,
-  `commande_id` int(11) NOT NULL,
   `utilisateur_id` int(11) NOT NULL,
-  `details_commande` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `details_commande` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `courriel` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Commandes`
+--
+
+INSERT INTO `Commandes` (`id`, `utilisateur_id`, `details_commande`, `courriel`) VALUES
+(1, 1, 'Laptop avec un SSD a installer', 'utilisateur@hotmail.com'),
+(2, 1, 'Souris, microphone et clavier pour performer dans les jeux', 'utilisateur@hotmail.com'),
+(3, 1, 'test', 'courriel@hotmail.com'),
+(4, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com'),
+(5, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -45,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `Produits` (
   `prix_unitaire` decimal(10,2) NOT NULL,
   `description_produit` text NOT NULL,
   `en_stock` tinyint(1) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Produits`
@@ -57,7 +68,7 @@ INSERT INTO `Produits` (`id`, `nom_produit`, `prix_unitaire`, `description_produ
 (3, 'Razer (Basilisk)', 70.19, 'Souris de jeu ergonomique multicolore 16 000 PPP capteur optique 5G', 0),
 (4, 'Razer (BlackWidow Elite)', 250.19, 'Clavier de jeu mécanique touches mécaniques Razer Green (tactile et clicky) commande multimédia repose', 0),
 (5, 'Samsung (860 EVO)', 219.99, 'Disque électronique 2,5 po de 1 To SATA III lecture: 550 Mo/s, écriture: 520 Mo/s [MZ-76E1T0B/AM]', 1),
-(6, 'Polaroid (Originals OneStep 2)', 140.20, 'Appareil photo instantané i-Type Blanc avec viseur étendu Gris foncé', 0),
+(6, 'Polaroid (Originals OneStep 2)', 140.20, 'Appareil photo instantané i-Type Blanc avec viseur étendu Gris foncé', 1),
 (7, 'ASRock B450M', 94.99, 'HDV R4.0 AMD AM4 Socket Dual Channel, PCIe 3.0, M.2 USB 3.1, DVI-D, HDMI, D-Sub, mATX Motherboard', 1);
 
 -- --------------------------------------------------------
@@ -71,7 +82,22 @@ CREATE TABLE IF NOT EXISTS `Produits_commande` (
   `commande_id` int(11) NOT NULL,
   `produit_id` int(11) NOT NULL,
   `quantite_produit` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Produits_commande`
+--
+
+INSERT INTO `Produits_commande` (`id`, `commande_id`, `produit_id`, `quantite_produit`) VALUES
+(3, 2, 2, 2),
+(4, 2, 3, 1),
+(5, 2, 4, 1),
+(12, 1, 3, 23),
+(13, 2, 5, 2),
+(14, 1, 4, 2),
+(16, 4, 7, 1),
+(17, 3, 1, 1),
+(18, 5, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +110,14 @@ CREATE TABLE IF NOT EXISTS `Utilisateurs` (
   `nom` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `identifiant` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `mot_de_passe` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Utilisateurs`
+--
+
+INSERT INTO `Utilisateurs` (`id`, `nom`, `identifiant`, `mot_de_passe`) VALUES
+(1, 'Yasser Soliman', 'ysoliman', '1234');
 
 --
 -- Indexes for dumped tables
@@ -95,8 +128,8 @@ CREATE TABLE IF NOT EXISTS `Utilisateurs` (
 --
 ALTER TABLE `Commandes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `commande_id` (`commande_id`),
-  ADD KEY `utilisateur_id` (`utilisateur_id`);
+  ADD KEY `utilisateur_id` (`utilisateur_id`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `Produits`
@@ -126,22 +159,22 @@ ALTER TABLE `Utilisateurs`
 -- AUTO_INCREMENT for table `Commandes`
 --
 ALTER TABLE `Commandes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `Produits`
 --
 ALTER TABLE `Produits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `Produits_commande`
 --
 ALTER TABLE `Produits_commande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `Utilisateurs`
 --
 ALTER TABLE `Utilisateurs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
@@ -150,15 +183,14 @@ ALTER TABLE `Utilisateurs`
 -- Constraints for table `Commandes`
 --
 ALTER TABLE `Commandes`
-  ADD CONSTRAINT `commandes_ibfk_1` FOREIGN KEY (`commande_id`) REFERENCES `Commandes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `commandes_ibfk_2` FOREIGN KEY (`utilisateur_id`) REFERENCES `Utilisateurs` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `commandes_utilisateur` FOREIGN KEY (`utilisateur_id`) REFERENCES `Utilisateurs` (`id`);
 
 --
 -- Constraints for table `Produits_commande`
 --
 ALTER TABLE `Produits_commande`
-  ADD CONSTRAINT `produits_commande_ibfk_1` FOREIGN KEY (`commande_id`) REFERENCES `Commandes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `produits_commande_ibfk_2` FOREIGN KEY (`produit_id`) REFERENCES `Produits` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `commandes_produitscommande` FOREIGN KEY (`commande_id`) REFERENCES `Commandes` (`id`),
+  ADD CONSTRAINT `produits_produitscommande` FOREIGN KEY (`produit_id`) REFERENCES `Produits` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

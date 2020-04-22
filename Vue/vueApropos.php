@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<table style="text-align: center;">
+<table>
     <tr>
         <td colspan="2">Yasser Soliman</td>	
     </tr>
@@ -11,6 +11,25 @@
     </tr>
     <tr>
         <td colspan="2">Hiver 2020, Collège Montmorency</td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <ul>
+                <li>L'application "L'inventaire de Yasser" permet de creer des commandes et d'ajouter des produits existants dans l'inventaire</li>
+                <li>La page d'accueil présente la liste de commandes crée et offre la possibilité d'en creer d'autres</li>
+                <ul>
+                    <li>Un utilisateur doit inclure sont courriel lors de la création d'une commande</li>
+                    <li>Il y a la gestion d'erreur lorsqu'un utilisateur entre un courriel</li>
+                </ul>
+                <li>En appuyant sur une commande il y a une liste de produit qui apparait</li>
+                <li>Il y a la possibilité d'ajouté des produits dans la liste de commande</li>
+                <li>Un utilisateur peut modifier ou supprimer un produit de la commande</li>
+                <ul>
+                    <li>Il y a la gestion d'erreur pour la quantité d'un produit. La valeur doit être un chiffre entier plus grand que 0.</li>
+                </ul>
+
+            </ul>
+        </td>
     </tr>
     <tr>
         <td>
