@@ -17,6 +17,16 @@ function getCommandes() {
     return $reponses;
 }
 
+function setCommande($commande) {
+    $bdd = getBdd();
+    
+    $reponse = $bdd->prepare("INSERT INTO `inventaire_et_vente`.`Commandes` (utilisateur_id, details_commande, courriel) "
+                            . "VALUES (?, ?, ?)");
+    $reponse->execute(array($commande['utilisateur_id'], $commande['details_commande'], $commande['courriel']));
+    
+    return $reponse;
+}
+
 function getProduitsCommandes() {
     $bdd = getBdd();
 
@@ -133,6 +143,18 @@ function setProduitCommande($produit, $commande) {
         $result = $bdd->prepare('INSERT INTO `Produits_commande` (commande_id, produit_id, quantite_produit) VALUES(?, ?, ?)');
         $result->execute(array($commande['id'], $produit['id'], 1));
     }
+    
+    return $result;
+}
+
+function modifierProduitCommande($id, $qte) {
+    $bdd = getBdd();
+    
+    $result = $bdd->prepare('UPDATE `inventaire_et_vente`.`Produits_commande` '
+                . 'SET `quantite_produit` = ? '
+                . 'WHERE `Produits_commande`.`id` = ?;');
+    
+    $result->execute(array($qte, $id));
     
     return $result;
 }

@@ -16,6 +16,20 @@ function commande($idCommande) {
     require 'Vue/vueCommande.php';
 }
 
+function nouvelCommande($erreur) {
+    require 'Vue/vueAjouterCommande.php';
+}
+
+function ajouterCommande($commande) {
+    $validation_courriel = filter_var($commande['courriel'], FILTER_VALIDATE_EMAIL);
+    if ($validation_courriel) {
+        setCommande($commande);
+        header('Location: index.php');
+    } else {
+        header('Location: index.php?action=nouvelCommande&erreur=courriel');
+    }
+}
+
 // Affiche une erreur
 function erreur($msgErreur) {
     require 'Vue/vueErreur.php';
@@ -38,8 +52,26 @@ function supprimerProduitCommande($id) {
     header('Location: index.php?action=commande&id=' . $produitCommande['commande_id']);
 }
 
+// Modifier un produit d'une commande
+function modificationProduitCommande($id, $erreur) {
+    $produitCommande = getProduitCommande($id);
+    require 'Vue/vueModifierProduit.php';
+}
+
+// Modifier un produit d'une commande
+function modifyProduitCommande($id, $qte) {
+    $produitCommande = getProduitCommande($id);
+    $validation_quantite = filter_var($qte, FILTER_VALIDATE_INT);
+    if ($validation_quantite && $qte > 0) {
+        modifierProduitCommande($id, $qte);
+        header('Location: index.php?action=commande&id=' . $produitCommande['commande_id']);
+    } else {
+        header('Location: index.php?action=modificationProduitCommande&id=' . $id . '&erreur=quantite');
+    }
+}
+
 // Confirmer la suppression d'un produit dans une commande
 function confirmerProduitCommande($id) {
     $produitCommande = getProduitCommande($id);
-    require 'Vue/vueConfirmer.php';
+    require 'Vue/vueConfirmerProduit.php';
 }

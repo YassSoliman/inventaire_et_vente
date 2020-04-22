@@ -37,7 +37,7 @@
         </tr>
         <tr>
             <td colspan="2" style="">
-                <a href="#">Modifier</a>
+                <a href="<?= "index.php?action=modificationProduitCommande&id=" . $produit['id'] ?>">Modifier</a>
                 &emsp;&emsp;&emsp;
                 <a href="<?= "index.php?action=confirmerProduitCommande&id=" . $produit['id'] ?>">Supprimer</a>
             </td>
