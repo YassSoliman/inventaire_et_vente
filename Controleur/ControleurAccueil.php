@@ -29,4 +29,25 @@ class ControleurAccueil {
         $vue->generer(array('commandes' => $commandes));
     }
 
+    public function nouvelCommande($erreur) {
+        $vue = new Vue("AjouterCommande");
+        $vue->generer(array('erreur' => $erreur));
+    }
+
+    public function apropos() {
+        $vue = new Vue("Apropos");
+        $vue->generer(array());
+    }
+
+    public function ajouterCommande($commande) {
+        $validation_courriel = filter_var($commande['courriel'], FILTER_VALIDATE_EMAIL);
+        
+        if ($validation_courriel) {
+            $this->commande->setCommande($commande);
+            $this->accueil();
+        } else {
+            $this->nouvelCommande('courriel');
+        }
+    }
+
 }

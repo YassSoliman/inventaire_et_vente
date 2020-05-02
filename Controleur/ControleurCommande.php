@@ -34,9 +34,50 @@ class ControleurCommande {
         $produitsCommandes = $this->produitCommandeObj->getProduitsCommande($idCommande);
         $produits = $this->produitObj->getProduits();
         $vue = new Vue("Commande");
-        $vue->generer(array('commande' => $commande, 
-                            'produitsCommandes' => $produitsCommandes, 
-                            'produits' => $produits));
+        $vue->generer(array('commande' => $commande,
+            'produitsCommandes' => $produitsCommandes,
+            'produits' => $produits));
+    }
+
+    // Ajoute un produit à une commande
+    public function ajouterProduit($idProduit, $idCommande) {
+        $produit = $this->produitObj->getProduit($idProduit);
+        $commande = $this->commandeObj->getCommande($idCommande);
+        $this->produitCommandeObj->setProduitCommande($produit, $commande);
+        $this->commande($idCommande);
+    }
+
+    // Confirmer la suppression d'un produit dans une commande
+    public function confirmerProduitCommande($id) {
+        $produitCommande = $this->produitCommandeObj->getProduitCommande($id);
+        $vue = new Vue("ConfirmerProduit");
+        $vue->generer(array('produitCommande' => $produitCommande));
+    }
+
+    // Supprimer un produit d'une commande
+    public function supprimerProduitCommande($id) {
+        $produitCommande = $this->produitCommandeObj->getProduitCommande($id);
+        $this->produitCommandeObj->deleteProduitCommande($id);
+        $this->commande($produitCommande['commande_id']);
+    }
+
+    // Modifier un produit d'une commande
+    public function modificationProduitCommande($id, $erreur) {
+        $produitCommande = $this->produitCommandeObj->getProduitCommande($id);
+        $vue = new Vue("ModifierProduit");
+        $vue->generer(array('produitCommande' => $produitCommande, 'erreur' => $erreur));
+    }
+
+    // Modifier un produit d'une commande
+    public function modifyProduitCommande($id, $qte) {
+        $produitCommande = $this->produitCommandeObj->getProduitCommande($id);
+        $validation_quantite = filter_var($qte, FILTER_VALIDATE_INT);
+        if ($validation_quantite && $qte > 0) {
+            $this->produitCommandeObj->modifierProduitCommande($id, $qte);
+            $this->commande($produitCommande['commande_id']);
+        } else {
+            $this->modificationProduitCommande($id, "quantite");
+        }
     }
 
 }

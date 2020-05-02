@@ -24,16 +24,14 @@ class Produit extends Modele {
     }
     
     public function getProduit($idProduit) {
-        $bdd = getBdd();
-
-        $reponses = $bdd->prepare('SELECT id, nom_produit, prix_unitaire, description_produit, en_stock '
+        $sql = 'SELECT id, nom_produit, prix_unitaire, description_produit, en_stock '
                 . 'FROM Produits '
-                . 'WHERE id=?'
-                . 'ORDER BY id DESC LIMIT 0,10');
+                . 'WHERE id=?';
+        
+        $produits = $this->executerRequete($sql, array($idProduit));
 
-        $reponses->execute(array($idProduit));
-        if ($reponses->rowCount() == 1) {
-            return $reponses->fetch();  // Accès à la première ligne de résultat
+        if ($produits->rowCount() == 1) {
+            return $produits->fetch();  // Accès à la première ligne de résultat
         } else {
             throw new Exception("Aucun produit ne correspond à l'identifiant '$idProduit'");
         }

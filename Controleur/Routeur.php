@@ -38,6 +38,64 @@ class Routeur {
                             throw new Exception("Identifiant de commande non valide");
                     } else
                         throw new Exception("Identifiant de commande non défini");
+                } else if ($_GET['action'] == 'apropos') {
+                    $this->ctrlAccueil->apropos();
+                } else if ($_GET['action'] == 'nouvelCommande') {
+                    $erreur = isset($_GET['erreur']) ? $_GET['erreur'] : '';
+                    $this->ctrlAccueil->nouvelCommande($erreur);
+                } else if ($_GET['action'] == 'ajouterCommande') {
+                    if (isset($_POST['details_commande']) && isset($_POST['courriel']) && isset($_POST['utilisateur_id'])) {
+                        $this->ctrlAccueil->ajouterCommande($_POST);
+                    } else
+                        throw new Exception("Aucun courriel ou details de commande");
+                } else if ($_GET['action'] == 'ajouterProduit') {
+                    if (isset($_GET['id']) && isset($_GET['commande_id'])) {
+                        $idProduit = intval($_GET['id']);
+                        $idCommande = intval($_GET['commande_id']);
+                        if ($idProduit != 0 && $idCommande != 0) {
+                            $this->ctrlCommande->ajouterProduit($idProduit, $idCommande);
+                        } else
+                            throw new Exception("Identifiant de produit incorrect");
+                    } else
+                        throw new Exception("Aucun identifiant de commande");
+                } else if ($_GET['action'] == 'confirmerProduitCommande') {
+                    if (isset($_GET['id'])) {
+                        $idProduitCommande = intval($_GET['id']);
+                        if ($idProduitCommande != 0) {
+                            $this->ctrlCommande->confirmerProduitCommande($idProduitCommande);
+                        } else
+                            throw new Exception("Identifiant de produit incorrect");
+                    } else
+                        throw new Exception("Aucun identifiant de produit");
+                } else if ($_GET['action'] == 'supprimerProduitCommande') {
+                    if (isset($_POST['id'])) {
+                        $idProduitCommande = intval($_POST['id']);
+                        if ($idProduitCommande != 0) {
+                            $this->ctrlCommande->supprimerProduitCommande($idProduitCommande);
+                        } else
+                            throw new Exception("Identifiant de produit incorrect");
+                    } else
+                        throw new Exception("Aucun identifiant de produit");
+                } else if ($_GET['action'] == 'modificationProduitCommande') {
+                    if (isset($_GET['id'])) {
+                        $idProduitCommande = intval($_GET['id']);
+                        $erreur = isset($_GET['erreur']) ? $_GET['erreur'] : '';
+                        if ($idProduitCommande != 0) {
+                            $this->ctrlCommande->modificationProduitCommande($idProduitCommande, $erreur);
+                        } else
+                            throw new Exception("Identifiant de produit incorrect");
+                    } else
+                        throw new Exception("Aucun identifiant de produit");
+
+                } else if ($_GET['action'] == 'modifyProduitCommande') {
+                    if (isset($_POST['id']) && isset($_POST['quantite_produit'])) {
+                        $idProduitCommande = intval($_POST['id']);
+                        if ($idProduitCommande != 0) {
+                            $this->ctrlCommande->modifyProduitCommande($idProduitCommande, $_POST['quantite_produit']);
+                        } else
+                            throw new Exception("Identifiant de produit incorrect");
+                    } else
+                        throw new Exception("Aucun identifiant de produit");
                 } else
                     throw new Exception("Action non valide");
             } else {  // aucune action définie : affichage de l'accueil
