@@ -1,6 +1,4 @@
-<?php $titre = 'Liste de produits dans commande'; ?>
-
-<?php ob_start(); ?>
+<?php $this->titre = 'Liste de produits dans commande'; ?>
 
 <article>
     <header>
@@ -63,7 +61,3 @@
         </div>
     <?php endforeach; ?>
 </div>
-
-<?php $contenu = ob_get_clean(); ?>
-
-<?php require 'gabarit.php'; ?>

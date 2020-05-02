@@ -1,6 +1,5 @@
-<?php $titre = "L'inventaire de Yasser - Ajouter une commande"; ?>
+<?php $this->titre = "L'inventaire de Yasser - Ajouter une commande"; ?>
 
-<?php ob_start(); ?>
 <header>
     <h1 id="titreReponses">Ajouter une commande de Yasser Soliman :</h1>
 </header>
@@ -14,9 +13,5 @@
         <input type="submit" value="Creer" />
     </p>
 </form>
-
-<?php $contenu = ob_get_clean(); ?>
-
-<?php require 'Vue/gabarit.php'; ?>
 
 

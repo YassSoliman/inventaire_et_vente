@@ -2,20 +2,6 @@
 
 require 'Modele/Modele.php';
 
-// Affiche la liste de tous les commandes
-function accueil() {
-    $commandes = getCommandes();
-    require 'Vue/vueAccueil.php';
-}
-
-// Affiche les détails sur une commande
-function commande($idCommande) {
-    $commande = getCommande($idCommande);
-    $produitsCommandes = getProduitsCommande($idCommande);
-    $produits = getProduits();
-    require 'Vue/vueCommande.php';
-}
-
 function nouvelCommande($erreur) {
     require 'Vue/vueAjouterCommande.php';
 }

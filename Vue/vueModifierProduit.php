@@ -1,6 +1,5 @@
-<?php $titre = 'Modification de produit dans une commande'; ?>
+<?php $this->titre = 'Modification de produit dans une commande'; ?>
 
-<?php ob_start(); ?>
 <form action="index.php?action=modifyProduitCommande" method="post">
 <table>	
     <thead>
@@ -36,7 +35,3 @@
     <input type="hidden" name="id" value="<?= $produitCommande['commande_id'] ?>" />
     <input type="submit" value="Annuler" />
 </form>
-
-<?php $contenu = ob_get_clean(); ?>
-
-<?php require 'gabarit.php'; ?>

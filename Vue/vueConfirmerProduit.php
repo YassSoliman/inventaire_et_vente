@@ -1,6 +1,4 @@
-<?php $titre = 'Confirmer la suppression'; ?>
-
-<?php ob_start(); ?>
+<?php $this->titre = 'Confirmer la suppression'; ?>
 
 <table>	
     <thead>
@@ -34,7 +32,3 @@
     <input type="hidden" name="id" value="<?= $produitCommande['commande_id'] ?>" />
     <input type="submit" value="Annuler" />
 </form>
-
-<?php $contenu = ob_get_clean(); ?>
-
-<?php require 'gabarit.php'; ?>

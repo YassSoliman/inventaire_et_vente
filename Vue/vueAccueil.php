@@ -1,6 +1,4 @@
-<?php $titre = 'Liste de produits'; ?>
-
-<?php ob_start(); ?>
+<?php $this->titre = 'Liste de produits'; ?>
 
 <p style="text-align: center;">
     <a href="index.php?action=apropos">À propos</a>
@@ -17,8 +15,3 @@
     <p><?= htmlspecialchars($commande['details_commande']) ?></p>
 
 <?php endforeach; ?>
-
-
-<?php $contenu = ob_get_clean(); ?>
-
-<?php require 'Vue/gabarit.php'; ?>

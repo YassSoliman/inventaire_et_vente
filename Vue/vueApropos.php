@@ -1,6 +1,4 @@
-<?php $titre = "L'inventaire de Yasser Soliman"; ?>
-
-<?php ob_start(); ?>
+<?php $this->titre = "L'inventaire de Yasser Soliman"; ?>
 
 <table>
     <tr>
@@ -52,6 +50,3 @@
         </td>
     </tr>
 </table>
-<?php $contenu = ob_get_clean(); ?>
-
-<?php require 'Vue/gabarit.php'; ?>
