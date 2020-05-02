@@ -103,6 +103,7 @@ class ProduitCommande extends Modele {
         return $result;
     }
 
+    // Modifie la quantite d'un produit dans une commande
     public function modifierProduitCommande($id, $qte) {
         $sql = 'UPDATE `inventaire_et_vente`.`Produits_commande` '
                 . 'SET `quantite_produit` = ? '
@@ -113,6 +114,7 @@ class ProduitCommande extends Modele {
         return $result;
     }
 
+    // Supprime un produit d'une commande
     public function deleteProduitCommande($id) {
         $sql = "DELETE FROM `inventaire_et_vente`.`Produits_commande` WHERE `Produits_commande`.`id` = ?";
 
