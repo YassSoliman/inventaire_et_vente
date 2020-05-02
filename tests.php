@@ -10,6 +10,8 @@ if (isset($_GET['test'])) {
         require 'Tests/Vues/testVueErreur.php';
     } else if ($_GET['test'] == 'vueCommande') {
         require 'Tests/Vues/testVueCommande.php';
+    } else if ($_GET['test'] == 'vueAccueil') {
+        require 'Tests/Vues/testVueAccueil.php';
     }
 }
 ?>
@@ -32,5 +34,8 @@ if (isset($_GET['test'])) {
     </li>
     <li>
         <a href="tests.php?test=vueCommande">Commande</a>
+    </li>
+    <li>
+        <a href="tests.php?test=vueAccueil">Accueil</a>
     </li>
 </ul>
