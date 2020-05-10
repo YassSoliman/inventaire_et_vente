@@ -24,8 +24,7 @@ class Configuration {
     public static function get($nom, $valeurParDefaut = null) {
         if (isset(self::getParametres()[$nom])) {
             $valeur = self::getParametres()[$nom];
-        }
-        else {
+        } else {
             $valeur = $valeurParDefaut;
         }
         return $valeur;
@@ -46,8 +45,7 @@ class Configuration {
             }
             if (!file_exists($cheminFichier)) {
                 throw new Exception("Aucun fichier de configuration trouvé");
-            }
-            else {
+            } else {
                 self::$parametres = parse_ini_file($cheminFichier);
             }
         }
@@ -55,4 +53,3 @@ class Configuration {
     }
 
 }
-

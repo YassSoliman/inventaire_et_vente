@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Configuration.php';
 require_once 'Controleur.php';
 require_once 'Requete.php';
 require_once 'Vue.php';
@@ -13,6 +14,7 @@ require_once 'Vue.php';
  * @version 1.0
  * @author Baptiste Pesquet
  */
+
 class Routeur {
 
     /**
@@ -29,8 +31,7 @@ class Routeur {
             $action = $this->creerAction($requete);
 
             $controleur->executerAction($action);
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             $this->gererErreur($e);
         }
     }
@@ -45,8 +46,8 @@ class Routeur {
     private function creerControleur(Requete $requete) {
         // Grâce à la redirection, toutes les URL entrantes sont du type :
         // index.php?controleur=XXX&action=YYY&id=ZZZ
-
-        $controleur = "Accueil";  // Contrôleur par défaut
+        $ctrlAccueil = Configuration::get("defaut");
+        $controleur = $ctrlAccueil;  // Contrôleur par défaut
         if ($requete->existeParametre('controleur')) {
             $controleur = $requete->getParametre('controleur');
             // Première lettre en majuscules
@@ -62,8 +63,7 @@ class Routeur {
             $controleur = new $classeControleur();
             $controleur->setRequete($requete);
             return $controleur;
-        }
-        else {
+        } else {
             throw new Exception("Fichier '$fichierControleur' introuvable");
         }
     }
@@ -89,7 +89,8 @@ class Routeur {
      */
     private function gererErreur(Exception $exception) {
         $vue = new Vue('erreur');
-        $vue->generer(array('msgErreur' => $exception->getMessage()));
+        $erreur = $exception->getMessage();
+        $vue->generer(array('msgErreur' => $erreur));
     }
 
 }

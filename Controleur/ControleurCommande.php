@@ -11,12 +11,12 @@
  *
  * @author yasser
  */
+require_once 'Framework/Controleur.php';
 require_once 'Modele/Commande.php';
 require_once 'Modele/Produit.php';
 require_once 'Modele/ProduitCommande.php';
-require_once 'Vue/Vue.php';
 
-class ControleurCommande {
+class ControleurCommande extends Controleur {
 
     private $commandeObj;
     private $produitObj;
@@ -29,12 +29,14 @@ class ControleurCommande {
     }
 
     // Affiche les détails sur une commande
-    public function commande($idCommande) {
+    public function index() {
+        $idCommande = $this->requete->getParametre("id");
+        
         $commande = $this->commandeObj->getCommande($idCommande);
         $produitsCommandes = $this->produitCommandeObj->getProduitsCommande($idCommande);
         $produits = $this->produitObj->getProduits();
-        $vue = new Vue("Commande");
-        $vue->generer(array('commande' => $commande,
+        
+        $this->genererVue(array('commande' => $commande,
             'produitsCommandes' => $produitsCommandes,
             'produits' => $produits));
     }

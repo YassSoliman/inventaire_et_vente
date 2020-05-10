@@ -11,10 +11,10 @@
  *
  * @author yasser
  */
+require_once 'Framework/Controleur.php';
 require_once 'Modele/Commande.php';
-require_once 'Vue/Vue.php';
 
-class ControleurAccueil {
+class ControleurAccueil extends Controleur {
 
     private $commande;
 
@@ -23,10 +23,9 @@ class ControleurAccueil {
     }
 
     // Affiche la liste de tous les commandes
-    public function accueil() {
+    public function index() {
         $commandes = $this->commande->getCommandes();
-        $vue = new Vue("Accueil");
-        $vue->generer(array('commandes' => $commandes));
+        $this->genererVue(array('commandes' => $commandes));
     }
 
     public function nouvelCommande($erreur) {

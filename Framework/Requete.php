@@ -1,15 +1,19 @@
 <?php
+require_once 'Configuration.php';
+require_once 'Session.php';
 
-/*
- * Classe modélisant une requête HTTP entrante
+/**
+ * Classe modélisant une requête HTTP entrante.
  * 
- * @version 1.0
  * @author Baptiste Pesquet
  */
 class Requete {
 
     /** Tableau des paramètres de la requête */
     private $parametres;
+
+    /** Objet session associé à la requête */
+    private $session;
 
     /**
      * Constructeur
@@ -18,6 +22,17 @@ class Requete {
      */
     public function __construct($parametres) {
         $this->parametres = $parametres;
+        $this->session = new Session();
+        $this->getSession()->setAttribut('env', Configuration::get("env"));
+    }
+
+    /**
+     * Renvoie l'objet session associé à la requête
+     * 
+     * @return Session Objet session
+     */
+    public function getSession() {
+        return $this->session;
     }
 
     /**
@@ -40,11 +55,29 @@ class Requete {
     public function getParametre($nom) {
         if ($this->existeParametre($nom)) {
             return $this->parametres[$nom];
-        }
-        else {
+        } else {
             throw new Exception("Paramètre '$nom' absent de la requête");
         }
     }
 
-}
+    /**
+     * Renvoie la valeur du paramètre de type ID
+     * 
+     * @param string $nom Nom d paramètre
+     * @return string Valeur du paramètre
+     * @throws Exception Si le paramètre n'existe pas dans la requête
+     */
+    public function getParametreId($nom) {
+        $id = intval($this->existeParametre($nom));
+        if ($id != 0) {
+            return $this->parametres[$nom];
+        } else {
+            throw new Exception("Paramètre '$nom' non valide");
+        }
+    }
 
+    public function setParametre($nom, $valeur) {
+        $this->parametres[$nom] = $valeur;
+    }
+
+}

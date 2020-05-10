@@ -11,7 +11,7 @@
  *
  * @author yasser
  */
-require_once 'Modele/Modele.php';
+require_once 'Framework/Modele.php';
 
 class Commande extends Modele {
 
