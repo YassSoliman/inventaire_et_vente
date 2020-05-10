@@ -33,9 +33,6 @@ if (isset($_GET['test'])) {
         <a href="tests.php?test=vueErreur">Erreur</a>
     </li>
     <li>
-        <a href="tests.php?test=vueCommande">Commande</a>
-    </li>
-    <li>
         <a href="tests.php?test=vueAccueil">Accueil</a>
     </li>
 </ul>
