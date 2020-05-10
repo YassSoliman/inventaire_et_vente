@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2020 at 11:39 PM
+-- Generation Time: May 10, 2020 at 03:37 AM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `Commandes` (
   `utilisateur_id` int(11) NOT NULL,
   `details_commande` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `courriel` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Commandes`
@@ -42,7 +42,9 @@ INSERT INTO `Commandes` (`id`, `utilisateur_id`, `details_commande`, `courriel`)
 (2, 1, 'Souris, microphone et clavier pour performer dans les jeux', 'utilisateur@hotmail.com'),
 (3, 1, 'test', 'courriel@hotmail.com'),
 (4, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com'),
-(5, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com');
+(5, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com'),
+(6, 1, 'test commande 2', 'test@hotmail.com'),
+(7, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -81,23 +83,25 @@ CREATE TABLE IF NOT EXISTS `Produits_commande` (
   `id` int(11) NOT NULL,
   `commande_id` int(11) NOT NULL,
   `produit_id` int(11) NOT NULL,
-  `quantite_produit` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+  `quantite_produit` int(11) NOT NULL,
+  `efface` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Produits_commande`
 --
 
-INSERT INTO `Produits_commande` (`id`, `commande_id`, `produit_id`, `quantite_produit`) VALUES
-(3, 2, 2, 2),
-(4, 2, 3, 1),
-(5, 2, 4, 1),
-(12, 1, 3, 23),
-(13, 2, 5, 2),
-(14, 1, 4, 2),
-(16, 4, 7, 1),
-(17, 3, 1, 1),
-(18, 5, 2, 1);
+INSERT INTO `Produits_commande` (`id`, `commande_id`, `produit_id`, `quantite_produit`, `efface`) VALUES
+(3, 2, 2, 2, 0),
+(5, 2, 4, 1, 0),
+(13, 2, 5, 2, 0),
+(14, 1, 4, 95, 0),
+(16, 4, 7, 1, 0),
+(17, 3, 1, 1, 1),
+(18, 5, 2, 1, 0),
+(22, 6, 7, 3, 0),
+(24, 6, 5, 1, 0),
+(26, 1, 6, 15, 0);
 
 -- --------------------------------------------------------
 
@@ -159,7 +163,7 @@ ALTER TABLE `Utilisateurs`
 -- AUTO_INCREMENT for table `Commandes`
 --
 ALTER TABLE `Commandes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `Produits`
 --
@@ -169,7 +173,7 @@ ALTER TABLE `Produits`
 -- AUTO_INCREMENT for table `Produits_commande`
 --
 ALTER TABLE `Produits_commande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `Utilisateurs`
 --
