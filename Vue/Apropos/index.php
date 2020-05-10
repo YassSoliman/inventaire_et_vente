@@ -21,10 +21,16 @@
                 </ul>
                 <li>En appuyant sur une commande il y a une liste de produit qui apparait</li>
                 <li>Il y a la possibilité d'ajouté des produits dans la liste de commande</li>
-                <li>Un utilisateur peut modifier ou supprimer un produit de la commande</li>
+                <li>Un utilisateur peut modifier, effacer ou rétablir un produit de la commande</li>
                 <ul>
                     <li>Il y a la gestion d'erreur pour la quantité d'un produit. La valeur doit être un chiffre entier plus grand que 0.</li>
                 </ul>
+                <li>Cette version offre la possibilité de changer de contrôleur d'accueil. L'accueil présente alors la liste de tous les produits 
+                    présent dans des commandes et offre la possibilité de voir la commande en question.
+                    <form action="Commande" method="post">
+                        <input type="submit" value="Changer de controleur d'accueil">
+                    </form>
+                </li>
 
             </ul>
         </td>

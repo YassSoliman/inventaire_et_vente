@@ -10,6 +10,7 @@
         <div id="global">
             <header>
                 <a href="index.php"><h1 id="titreInventaire">L'inventaire de Yasser</h1></a>
+                <p>Version avec Cadriciel (Framework) MVC maison : Ajout d'effacement (au lieu de suppression) et de rétablissement des produits.</p>
                 <a href="tests.php"><h1 id="titreBlog">TESTS</h1></a>
                 <a href="Apropos">À propos</a>
             </header>
