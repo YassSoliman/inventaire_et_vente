@@ -16,7 +16,7 @@ require_once 'Framework/Modele.php';
 class ProduitCommande extends Modele {
 
     public function getProduitsCommandes() {
-        $sql = 'SELECT `Produits_commande`.id, `commande_id`,'
+        $sql = 'SELECT `Produits_commande`.id, `Produits_commande`.efface, `commande_id`,'
                 . ' `produit_id`,'
                 . ' `quantite_produit`,'
                 . ' `Produits`.`nom_produit`,'
@@ -37,7 +37,7 @@ class ProduitCommande extends Modele {
 
     // Retourne une liste de produits present dans la commande en parametre
     public function getProduitsCommande($idCommande) {
-        $sql = 'SELECT `Produits_commande`.id, `commande_id`,'
+        $sql = 'SELECT `Produits_commande`.id, `Produits_commande`.efface, `commande_id`,'
                 . ' `produit_id`,'
                 . ' `quantite_produit`,'
                 . ' `Produits`.`nom_produit`,'
@@ -59,7 +59,7 @@ class ProduitCommande extends Modele {
 
     // Retourne un produit specifique present dans une commande
     public function getProduitCommande($id) {
-        $sql = 'SELECT `Produits_commande`.id, `commande_id`,'
+        $sql = 'SELECT `Produits_commande`.id, `Produits_commande`.efface, `commande_id`,'
                 . ' `produit_id`,'
                 . ' `quantite_produit`,'
                 . ' `Produits`.`nom_produit`,'
@@ -116,7 +116,20 @@ class ProduitCommande extends Modele {
 
     // Supprime un produit d'une commande
     public function deleteProduitCommande($id) {
-        $sql = "DELETE FROM `inventaire_et_vente`.`Produits_commande` WHERE `Produits_commande`.`id` = ?";
+        $sql = "UPDATE `inventaire_et_vente`.`Produits_commande` "
+                . "SET `Produits_commande`.`efface` = '1' "
+                . "WHERE `Produits_commande`.`id` = ?";
+
+        $result = $this->executerRequete($sql, array($id));
+
+        return $result;
+    }
+    
+    // Restore un produit d'une commande
+    public function restoreProduitCommande($id) {
+        $sql = "UPDATE `inventaire_et_vente`.`Produits_commande` "
+                . "SET `Produits_commande`.`efface` = '0'"
+                . "WHERE `Produits_commande`.`id` = ?";
 
         $result = $this->executerRequete($sql, array($id));
 

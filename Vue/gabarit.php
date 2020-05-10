@@ -11,6 +11,7 @@
             <header>
                 <a href="index.php"><h1 id="titreInventaire">L'inventaire de Yasser</h1></a>
                 <a href="tests.php"><h1 id="titreBlog">TESTS</h1></a>
+                <a href="Apropos">À propos</a>
             </header>
             <div id="contenu">
                 <?= $contenu ?>

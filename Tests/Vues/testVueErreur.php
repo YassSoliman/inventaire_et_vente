@@ -1,5 +1,5 @@
 <?php
 
-require_once 'Vue/Vue.php';
-$vue = new Vue("Erreur");
+require_once 'Framework/Vue.php';
+$vue = new Vue("erreur");
 $vue->generer(array('msgErreur' => '*** Message d\'erreur test ***'));

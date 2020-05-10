@@ -12,9 +12,6 @@ body {
     background: skyblue;
 }
 
-form input {
-}
-
 form label {
     margin-right: 0.5em;
 } 
@@ -85,7 +82,7 @@ th {
   font-size: 22px;
 }
 
-.carte button {
+.carte input[type="submit"] {
   border: none;
   outline: 0;
   padding: 12px;
@@ -97,11 +94,14 @@ th {
   font-size: 18px;
 }
 
-.carte button:hover {
+.carte input[type="submit"]:hover {
   opacity: 0.7;
 }
 
-.carte button a {
-  text-decoration: none;
-  color: white;
+.efface{
+    color : #d000c0;
+}
+
+.message {
+    color: #3b7b2b;
 }

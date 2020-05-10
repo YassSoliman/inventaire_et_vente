@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Vue/Vue.php';
+require_once 'Framework/Vue.php';
 $commandes = [
     [
         'id' => '2',
@@ -28,5 +28,5 @@ $commandes = [
     ]
     
 ];
-$vue = new Vue('Accueil');
+$vue = new Vue('index', 'Accueil');
 $vue->generer(array('commandes' => $commandes));

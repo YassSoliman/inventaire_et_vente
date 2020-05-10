@@ -1,6 +1,6 @@
 <?php $this->titre = 'Modification de produit dans une commande'; ?>
 
-<form action="index.php?action=modifyProduitCommande" method="post">
+<form action="Commande/modifyProduitCommande" method="post">
 <table>	
     <thead>
     <th colspan="3">Modifier?</th>
@@ -26,12 +26,9 @@
 </tr>
 </tbody>
 </table>
-
     <input type="hidden" name="id" value="<?= $this->nettoyer($produitCommande['id']) ?>" /><br />
     <input type="submit" value="Appliquer" />
 </form>
-<form action="index.php" method="get" >
-    <input type="hidden" name="action" value="commande" />
-    <input type="hidden" name="id" value="<?= $this->nettoyer($produitCommande['commande_id']) ?>" />
+<form action="Accueil/lire/<?= $this->nettoyer($produitCommande['commande_id']) ?>" method="post" >
     <input type="submit" value="Annuler" />
 </form>

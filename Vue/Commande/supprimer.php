@@ -6,7 +6,7 @@
 </thead>
 <tr>
     <td id="conteneurNomProduit" rowspan="5">
-        <strong id="nomProduit"><?= htmlspecialchars($produitCommande['nom_produit']) ?></strong>
+        <strong id="nomProduit"><?= $this->nettoyer($produitCommande['nom_produit']) ?></strong>
     </td>
 </tr>
 <tr>
@@ -23,12 +23,10 @@
 </tr>
 </tbody>
 </table>
-<form action="index.php?action=supprimerProduitCommande" method="post">
+<form action="Commande/supprimerProduitCommande" method="post">
     <input type="hidden" name="id" value="<?= $this->nettoyer($produitCommande['id']) ?>" /><br />
     <input type="submit" value="Oui" />
 </form>
-<form action="index.php" method="get" >
-    <input type="hidden" name="action" value="commande" />
-    <input type="hidden" name="id" value="<?= $this->nettoyer($produitCommande['commande_id']) ?>" />
+<form action="Accueil/lire/<?= $this->nettoyer($produitCommande['commande_id']) ?>" method="post" >
     <input type="submit" value="Annuler" />
 </form>

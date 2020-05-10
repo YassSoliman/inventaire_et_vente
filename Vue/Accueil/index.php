@@ -1,9 +1,5 @@
 <?php $this->titre = 'Liste de produits'; ?>
 
-<p style="text-align: center;">
-    <a href="Apropos">À propos</a>
-</p>
-
 <h2>
     <a href="Accueil/ajouter">
         Creer une commande

@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Vue/Vue.php';
+require_once 'Framework/Vue.php';
 $commande = [
     'id' => '2',
     'utilisateur_id' => '1',
@@ -56,5 +56,5 @@ $produitsCommandes = [
         'nom' => 'Yasser Soliman'
     ]
 ];
-$vue = new Vue('Commande');
+$vue = new Vue('lire', 'Accueil');
 $vue->generer(array('commande' => $commande, 'produits' => $produits, 'produitsCommandes' => $produitsCommandes));
