@@ -2,8 +2,9 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <base href="<?= $racineWeb ?>" >
         <link rel="stylesheet" href="Contenue/css/style.css" />
-        <title><?= $titre ?></title>
+        <title><?= $titre ?></title>        
     </head>
     <body>
         <div id="global">
