@@ -3,7 +3,7 @@
 <header>
     <h1 id="titreReponses">Ajouter une commande de Yasser Soliman :</h1>
 </header>
-<form action="index.php?action=ajouterCommande" method="post">
+<form action="Accueil/ajouterCommande" method="post">
     <h2>Ajouter une commande</h2>
     <p>
         <label for="details_commande">Détails</label> : <input type="text" name="details_commande" id="details_commande" /> <br />

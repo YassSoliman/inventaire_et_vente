@@ -13,39 +13,61 @@
  */
 require_once 'Framework/Controleur.php';
 require_once 'Modele/Commande.php';
+require_once 'Modele/Produit.php';
+require_once 'Modele/ProduitCommande.php';
 
 class ControleurAccueil extends Controleur {
 
-    private $commande;
+    private $commandeObj;
+    private $produitObj;
+    private $produitCommandeObj;
 
     public function __construct() {
-        $this->commande = new Commande();
+        $this->commandeObj = new Commande();
+        $this->produitObj = new Produit();
+        $this->produitCommandeObj = new ProduitCommande();
     }
 
     // Affiche la liste de tous les commandes
     public function index() {
-        $commandes = $this->commande->getCommandes();
+        $commandes = $this->commandeObj->getCommandes();
         $this->genererVue(array('commandes' => $commandes));
     }
-
-    public function nouvelCommande($erreur) {
-        $vue = new Vue("AjouterCommande");
-        $vue->generer(array('erreur' => $erreur));
+    
+    // Affiche les détails sur une commande
+    public function lire() {
+        $idCommande = $this->requete->getParametre("id");
+        
+        $commande = $this->commandeObj->getCommande($idCommande);
+        $produitsCommandes = $this->produitCommandeObj->getProduitsCommande($idCommande);
+        $produits = $this->produitObj->getProduits();
+        
+        $this->genererVue(array('commande' => $commande,
+            'produitsCommandes' => $produitsCommandes,
+            'produits' => $produits));
     }
 
-    public function apropos() {
-        $vue = new Vue("Apropos");
-        $vue->generer(array());
+    public function ajouter() {
+        $erreur = $this->requete->getSession()->existeAttribut("erreur") ? $this->requete->getsession()->getAttribut("erreur") : '';
+        $this->genererVue(['erreur' => $erreur]);
     }
 
-    public function ajouterCommande($commande) {
-        $validation_courriel = filter_var($commande['courriel'], FILTER_VALIDATE_EMAIL);
+    public function ajouterCommande() {
+        $commandeObj['courriel'] = $this->requete->getParametreId("courriel");
+        $commandeObj['details_commande'] = $this->requete->getParametreId("details_commande");
+        $commandeObj['utilisateur_id'] = $this->requete->getParametreId("utilisateur_id");
+        $validation_courriel = filter_var($commandeObj['courriel'], FILTER_VALIDATE_EMAIL);
         
         if ($validation_courriel) {
-            $this->commande->setCommande($commande);
-            $this->accueil();
+            // Éliminer un code d'erreur éventuel
+            if ($this->requete->getSession()->existeAttribut('erreur')) {
+                $this->requete->getsession()->setAttribut('erreur', '');
+            }
+            $this->commandeObj->setCommande($commandeObj);
+            $this->rediriger('Acceuil', 'index');
         } else {
-            $this->nouvelCommande('courriel');
+            $this->requete->getSession()->setAttribut('erreur', 'courriel');
+            $this->rediriger('Accueil', 'ajouter');
         }
     }
 

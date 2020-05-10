@@ -29,6 +29,7 @@ class ControleurCommande extends Controleur {
     }
 
     // Affiche les détails sur une commande
+    // Pas utiliser
     public function index() {
         $idCommande = $this->requete->getParametre("id");
         
