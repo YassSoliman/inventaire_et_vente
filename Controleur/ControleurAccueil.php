@@ -64,7 +64,7 @@ class ControleurAccueil extends Controleur {
                 $this->requete->getsession()->setAttribut('erreur', '');
             }
             $this->commandeObj->setCommande($commandeObj);
-            $this->rediriger('Acceuil', 'index');
+            $this->rediriger('Acceuil');
         } else {
             $this->requete->getSession()->setAttribut('erreur', 'courriel');
             $this->rediriger('Accueil', 'ajouter');
