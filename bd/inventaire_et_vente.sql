@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2020 at 03:37 AM
+-- Generation Time: May 15, 2020 at 11:57 PM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `Commandes` (
   `utilisateur_id` int(11) NOT NULL,
   `details_commande` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `courriel` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `Commandes`
@@ -44,7 +44,8 @@ INSERT INTO `Commandes` (`id`, `utilisateur_id`, `details_commande`, `courriel`)
 (4, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com'),
 (5, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com'),
 (6, 1, 'test commande 2', 'test@hotmail.com'),
-(7, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com');
+(7, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com'),
+(8, 1, 'Commande pour tester ajout de commande', 'test@hotmail.com');
 
 -- --------------------------------------------------------
 
@@ -106,6 +107,25 @@ INSERT INTO `Produits_commande` (`id`, `commande_id`, `produit_id`, `quantite_pr
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `T_UTILISATEUR`
+--
+
+CREATE TABLE IF NOT EXISTS `T_UTILISATEUR` (
+  `UTIL_ID` int(11) NOT NULL,
+  `UTIL_LOGIN` varchar(100) NOT NULL,
+  `UTIL_MDP` varchar(100) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `T_UTILISATEUR`
+--
+
+INSERT INTO `T_UTILISATEUR` (`UTIL_ID`, `UTIL_LOGIN`, `UTIL_MDP`) VALUES
+(1, 'admin', 'secret');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Utilisateurs`
 --
 
@@ -150,6 +170,12 @@ ALTER TABLE `Produits_commande`
   ADD KEY `produit_id` (`produit_id`);
 
 --
+-- Indexes for table `T_UTILISATEUR`
+--
+ALTER TABLE `T_UTILISATEUR`
+  ADD PRIMARY KEY (`UTIL_ID`);
+
+--
 -- Indexes for table `Utilisateurs`
 --
 ALTER TABLE `Utilisateurs`
@@ -163,7 +189,7 @@ ALTER TABLE `Utilisateurs`
 -- AUTO_INCREMENT for table `Commandes`
 --
 ALTER TABLE `Commandes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `Produits`
 --
@@ -174,6 +200,11 @@ ALTER TABLE `Produits`
 --
 ALTER TABLE `Produits_commande`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT for table `T_UTILISATEUR`
+--
+ALTER TABLE `T_UTILISATEUR`
+  MODIFY `UTIL_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `Utilisateurs`
 --
