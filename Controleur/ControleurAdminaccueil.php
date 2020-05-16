@@ -11,12 +11,12 @@
  *
  * @author yasser
  */
-require_once 'Framework/Controleur.php';
+require_once 'Controleur/ControleurAdmin.php';
 require_once 'Modele/Commande.php';
 require_once 'Modele/Produit.php';
 require_once 'Modele/ProduitCommande.php';
 
-class ControleurAccueil extends Controleur {
+class ControleurAccueil extends ControleurAdmin {
 
     private $commandeObj;
     private $produitObj;
@@ -45,6 +45,30 @@ class ControleurAccueil extends Controleur {
         $this->genererVue(array('commande' => $commande,
             'produitsCommandes' => $produitsCommandes,
             'produits' => $produits));
+    }
+
+    public function ajouter() {
+        $erreur = $this->requete->getSession()->existeAttribut("erreur") ? $this->requete->getsession()->getAttribut("erreur") : '';
+        $this->genererVue(['erreur' => $erreur]);
+    }
+
+    public function ajouterCommande() {
+        $commandeObj['courriel'] = $this->requete->getParametreId("courriel");
+        $commandeObj['details_commande'] = $this->requete->getParametreId("details_commande");
+        $commandeObj['utilisateur_id'] = $this->requete->getParametreId("utilisateur_id");
+        $validation_courriel = filter_var($commandeObj['courriel'], FILTER_VALIDATE_EMAIL);
+        
+        if ($validation_courriel) {
+            // Éliminer un code d'erreur éventuel
+            if ($this->requete->getSession()->existeAttribut('erreur')) {
+                $this->requete->getsession()->setAttribut('erreur', '');
+            }
+            $this->commandeObj->setCommande($commandeObj);
+            $this->rediriger('Acceuil');
+        } else {
+            $this->requete->getSession()->setAttribut('erreur', 'courriel');
+            $this->rediriger('Accueil', 'ajouter');
+        }
     }
 
 }

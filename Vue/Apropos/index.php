@@ -27,7 +27,7 @@
                 </ul>
                 <li>Cette version offre la possibilité de changer de contrôleur d'accueil. L'accueil présente alors la liste de tous les produits 
                     présent dans des commandes et offre la possibilité de voir la commande en question.
-                    <form action="Commande" method="post">
+                    <form action="<?= $utilisateur != '' ? 'Admin' : ''; ?>Commande" method="post">
                         <input type="submit" value="Changer de controleur d'accueil">
                     </form>
                 </li>

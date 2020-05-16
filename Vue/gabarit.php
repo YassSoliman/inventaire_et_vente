@@ -14,6 +14,13 @@
                 <a href="tests.php"><h1 id="titreBlog">TESTS</h1></a>
                 <a href="Apropos">À propos</a>
             </header>
+            <?php if ($utilisateur != '') : ?>
+                <h3>Bonjour <?= $utilisateur ?>,
+                    <a href="Utilisateurs/deconnecter"><small>[Se déconnecter]</small></a>
+                </h3>
+            <?php else : ?>
+            <h3>[<a href="Utilisateurs/index">Se connecter</a>] <small>(admin/secret)</small></h3>
+            <?php endif; ?>
             <div id="contenu">
                 <?= $contenu ?>
             </div>
