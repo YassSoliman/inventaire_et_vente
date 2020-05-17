@@ -27,8 +27,8 @@ class ControleurUtilisateurs extends Controleur {
             $mdp = $this->requete->getParametre("mdp");
             if ($this->utilisateur->connecter($login, $mdp)) {
                 $utilisateur = $this->utilisateur->getUtilisateur($login, $mdp);
-                $this->requete->getSession()->setAttribut("idUtilisateur", $utilisateur['id']);
-                $this->requete->getSession()->setAttribut("login", $utilisateur['identifiant']);
+                $this->requete->getSession()->setAttribut("idUtilisateur", $utilisateur['UTIL_ID']);
+                $this->requete->getSession()->setAttribut("login", $utilisateur['UTIL_LOGIN']);
                 // Éliminer un code d'erreur éventuel
                 if ($this->requete->getSession()->existeAttribut('erreur')) {
                     $this->requete->getsession()->setAttribut('erreur', '');

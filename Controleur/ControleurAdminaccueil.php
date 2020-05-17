@@ -16,7 +16,7 @@ require_once 'Modele/Commande.php';
 require_once 'Modele/Produit.php';
 require_once 'Modele/ProduitCommande.php';
 
-class ControleurAccueil extends ControleurAdmin {
+class ControleurAdminAccueil extends ControleurAdmin {
 
     private $commandeObj;
     private $produitObj;

@@ -58,17 +58,10 @@ abstract class Controleur {
         // Détermination du nom du fichier vue à partir du nom du contrôleur actuel
         $classeControleur = get_class($this);
         $controleur = str_replace("Controleur", "", $classeControleur);
-        // Vérifier s'il y a un message à afficher
-        $message = '';
-        if ($this->requete->getSession()->existeAttribut("message")) {
-            $message = $this->requete->getsession()->getAttribut("message");
-            $this->requete->getsession()->setAttribut("message", ''); // on affiche le message une seule fois 
-        }
-        $donneesVue['message'] = $message;
 
-        // Instanciation et génération de la vue
+        // Instanciation et génération de la vueF
         $vue = new Vue($this->action, $controleur);
-        $vue->generer($donneesVue);
+        $vue->generer($donneesVue, $this->requete);
     }
 
     /**
@@ -77,10 +70,10 @@ abstract class Controleur {
      * @param string $controleur Contrôleur
      * @param type $action Action Action
      */
-    protected function rediriger($controleur = null, $action = null) {
+    protected function rediriger($controleur, $action = null) {
         $racineWeb = Configuration::get("racineWeb", "/");
         // Redirection vers l'URL /racine_site/controleur/action
-        if ($controleur != null) {
+        if ($controleur != "") {
             header("Location:" . $racineWeb . $controleur . "/" . $action);
         } else {
             header("Location:" . $racineWeb);

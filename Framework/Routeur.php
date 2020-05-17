@@ -32,7 +32,7 @@ class Routeur {
 
             $controleur->executerAction($action);
         } catch (Exception $e) {
-            $this->gererErreur($e);
+            $this->gererErreur($e, $requete);
         }
     }
 
@@ -47,12 +47,19 @@ class Routeur {
         // Grâce à la redirection, toutes les URL entrantes sont du type :
         // index.php?controleur=XXX&action=YYY&id=ZZZ
         $ctrlAccueil = Configuration::get("defaut");
-        $controleur = $ctrlAccueil;  // Contrôleur par défaut
+        // Contrôleur par défaut
+        // Choisir le contrôleur Admin si un utilisateur est en session
+        if ($requete->getSession()->existeAttribut("idUtilisateur")) {
+            $controleur = 'Admin' . $ctrlAccueil;
+        } else {
+            $controleur = $ctrlAccueil;
+        }
         if ($requete->existeParametre('controleur')) {
             $controleur = $requete->getParametre('controleur');
-            // Première lettre en majuscules
-            $controleur = ucfirst(strtolower($controleur));
         }
+        // Première lettre en majuscules
+        $controleur = ucfirst(strtolower($controleur));
+
         // Création du nom du fichier du contrôleur
         // La convention de nommage des fichiers controleurs est : Controleur/Controleur<$controleur>.php
         $classeControleur = "Controleur" . $controleur;
@@ -87,10 +94,10 @@ class Routeur {
      * 
      * @param Exception $exception Exception qui s'est produite
      */
-    private function gererErreur(Exception $exception) {
+    private function gererErreur(Exception $exception, $requete) {
         $vue = new Vue('erreur');
         $erreur = $exception->getMessage();
-        $vue->generer(array('msgErreur' => $erreur));
+        $vue->generer(array('msgErreur' => $erreur), $requete);
     }
 
 }

@@ -37,18 +37,16 @@ class Vue {
      * 
      * @param array $donnees Données nécessaires à la génération de la vue
      */
-    public function generer($donnees) {
+    public function generer($donnees, $requete) {
         // Génération de la partie spécifique de la vue
-        $contenu = $this->genererFichier($this->fichier, $donnees);
+        $contenu = $this->genererFichier($this->fichier, $donnees, $requete);
         // On définit une variable locale accessible par la vue pour la racine Web
         // Il s'agit du chemin vers le site sur le serveur Web
         // Nécessaire pour les URI de type controleur/action/id
         $racineWeb = Configuration::get("racineWeb", "/");
         // Génération du gabarit commun utilisant la partie spécifique
-        $vue = $this->genererFichier('Vue/gabarit.php',
-                array('titre' => $this->titre, 'contenu' => $contenu,
-                    'racineWeb' => $racineWeb,
-                    'message' => $donnees['message']));
+        $vue = $this->genererFichier('Vue/gabarit.php', array('titre' => $this->titre, 'contenu' => $contenu,
+            'racineWeb' => $racineWeb), $requete);
         // Renvoi de la vue générée au navigateur
         echo $vue;
     }
@@ -61,10 +59,17 @@ class Vue {
      * @return string Résultat de la génération de la vue
      * @throws Exception Si le fichier vue est introuvable
      */
-    private function genererFichier($fichier, $donnees) {
+    private function genererFichier($fichier, $donnees, $requete) {
         if (file_exists($fichier)) {
             // Rend les éléments du tableau $donnees accessibles dans la vue
             extract($donnees);
+            //Vérifier si un utilisateur est en session et rendre ses infos disponible à la vue
+            if ($requete != null && $requete->getSession()->existeAttribut("idUtilisateur")) {
+                $utilisateur = $requete->getSession()->getAttribut("login");
+                $idUtilisateur = $requete->getSession()->getAttribut("idUtilisateur");
+            } else {
+                $utilisateur = '';
+            }
             // Démarrage de la temporisation de sortie
             ob_start();
             // Inclut le fichier vue
@@ -72,8 +77,7 @@ class Vue {
             require $fichier;
             // Arrêt de la temporisation et renvoi du tampon de sortie
             return ob_get_clean();
-        }
-        else {
+        } else {
             throw new Exception("Fichier '$fichier' introuvable");
         }
     }

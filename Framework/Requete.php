@@ -1,5 +1,5 @@
 <?php
-require_once 'Configuration.php';
+
 require_once 'Session.php';
 
 /**
