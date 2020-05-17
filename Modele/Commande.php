@@ -16,9 +16,9 @@ require_once 'Framework/Modele.php';
 class Commande extends Modele {
 
     public function getCommandes() {
-        $sql = 'SELECT Commandes.*, Utilisateurs.nom, Utilisateurs.identifiant '
+        $sql = 'SELECT Commandes.*, `T_UTILISATEUR`.`UTIL_LOGIN`, `T_UTILISATEUR`.`UTIL_ID` '
                 . 'FROM `Commandes` '
-                . 'INNER JOIN Utilisateurs ON Commandes.utilisateur_id = Utilisateurs.id';
+                . 'INNER JOIN `T_UTILISATEUR` ON Commandes.utilisateur_id = `T_UTILISATEUR`.`UTIL_ID`';
 
         $commandes = $this->executerRequete($sql);
 
@@ -26,9 +26,9 @@ class Commande extends Modele {
     }
 
     public function getCommande($idCommande) {
-        $sql = 'SELECT Commandes.*, Utilisateurs.nom, Utilisateurs.identifiant '
+        $sql = 'SELECT Commandes.*, `T_UTILISATEUR`.`UTIL_LOGIN`, `T_UTILISATEUR`.`UTIL_ID` '
                 . 'FROM `Commandes` '
-                . 'INNER JOIN Utilisateurs ON Commandes.utilisateur_id = Utilisateurs.id '
+                . 'INNER JOIN `T_UTILISATEUR` ON Commandes.utilisateur_id = `T_UTILISATEUR`.`UTIL_ID` '
                 . 'WHERE `Commandes`.`id`=?';
 
         $commandes = $this->executerRequete($sql, array($idCommande));

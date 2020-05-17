@@ -31,6 +31,22 @@
                         <input type="submit" value="Changer de controleur d'accueil">
                     </form>
                 </li>
+                <li>Si un utilisateur est en session : </li>
+                <ul>
+                    <li>on retrouve un lien pour créer une commande :
+                        <ul>
+                            <li>
+                                La commande créé est attribué à l'utilisateur en session
+                            </li>                            
+                        </ul>
+                    </li>
+                    <li>
+                        Les actions pour modifier/effacer/rétablir un produit d'une commande sont affichées ;
+                    </li>
+                    <li>
+                        Il est possible d'ajouter un produit à une commande.
+                    </li>
+                </ul>
 
             </ul>
         </td>

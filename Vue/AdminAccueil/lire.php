@@ -3,7 +3,7 @@
 <article>
     <header>
         <h1>Commande <?= $this->nettoyer($commande['id']) ?></h1>
-        <h2>Par <?= $this->nettoyer($commande['nom']) ?></h2>
+        <h2>Par <?= $this->nettoyer($commande['UTIL_LOGIN']) ?></h2>
         <p><?= $this->nettoyer($commande['details_commande']) ?></p>
         <h3>Contact : <?= $this->nettoyer($commande['courriel']) ?></h3>
     </header>
