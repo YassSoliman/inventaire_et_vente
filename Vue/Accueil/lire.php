@@ -18,7 +18,7 @@
     <?php foreach ($produitsCommandes as $produit): ?>
         <?php if ($produit['efface'] == '0') : ?>
             <tr>
-                <td id="conteneurNomProduit" rowspan="5">
+                <td id="conteneurNomProduit" rowspan="4">
                     <strong id="nomProduit"><?= $this->nettoyer($produit['nom_produit']) ?></strong>
                 </td>
             </tr>
@@ -34,19 +34,12 @@
                 <td class="nomPropriete">Quantité</td>
                 <td><?= $this->nettoyer($produit['quantite_produit']) ?></td>
             </tr>
-            <tr>
-                <td colspan="2" style="">
-                    <a href="<?= "Commande/modifier/" . $this->nettoyer($produit['id']) ?>">Modifier</a>
-                    &emsp;&emsp;&emsp;
-                    <a href="<?= "Commande/supprimer/" . $this->nettoyer($produit['id']) ?>">Supprimer</a>                
-                </td>
-            </tr>
         <?php else : ?>
             <tr>
                 <td colspan="2" style="">
                     <p class="efface">
-                        <a href="Commande/retablir/<?= $this->nettoyer($produit['id']) ?>">
-                            [ Rétablir ]
+                        <a href="Utilisateurs">
+                            [ Se connecter pour rétablir ]
                         </a>
                         <?= $this->nettoyer($produit['nom_produit']) ?> effacé!
                     </p>
@@ -57,23 +50,17 @@
     <?php endforeach; ?>
 </tbody>
 </table>
-
 <hr />
 
-<h2>Ajouter un produit</h2>
+<h2>Liste de produits existants</h2>
 <div class="listeProduits">
     <?php foreach ($produits as $produit): ?>    
         <div class="carte">
-            <form action="Commande/ajouter" method="post">
                 <h1><?= $this->nettoyer($produit['nom_produit']) ?></h1>
                 <p class="prix"><?= $this->nettoyer($produit['prix_unitaire']) ?> $</p>
                 <p><?= $this->nettoyer($produit['description_produit']) ?></p>
                 <input type="hidden" name="commande_id" value="<?= $this->nettoyer($commande['id']) ?>" />
                 <input type="hidden" name="produit_id" value="<?= $this->nettoyer($produit['id']) ?>" />
-                <p>
-                    <input type="submit" value="Ajouter à la commande" />
-                </p>
-            </form>
         </div>    
     <?php endforeach; ?>
 </div>

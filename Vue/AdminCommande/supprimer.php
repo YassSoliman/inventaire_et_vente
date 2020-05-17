@@ -23,10 +23,10 @@
 </tr>
 </tbody>
 </table>
-<form action="Commande/supprimerProduitCommande" method="post">
+<form action="Admincommande/supprimerProduitCommande" method="post">
     <input type="hidden" name="id" value="<?= $this->nettoyer($produitCommande['id']) ?>" /><br />
     <input type="submit" value="Oui" />
 </form>
-<form action="Accueil/lire/<?= $this->nettoyer($produitCommande['commande_id']) ?>" method="post" >
+<form action="Adminaccueil/lire/<?= $this->nettoyer($produitCommande['commande_id']) ?>" method="post" >
     <input type="submit" value="Annuler" />
 </form>

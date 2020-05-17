@@ -36,16 +36,16 @@
             </tr>
             <tr>
                 <td colspan="2" style="">
-                    <a href="<?= "Commande/modifier/" . $this->nettoyer($produit['id']) ?>">Modifier</a>
+                    <a href="<?= "Admincommande/modifier/" . $this->nettoyer($produit['id']) ?>">Modifier</a>
                     &emsp;&emsp;&emsp;
-                    <a href="<?= "Commande/supprimer/" . $this->nettoyer($produit['id']) ?>">Supprimer</a>                
+                    <a href="<?= "Admincommande/supprimer/" . $this->nettoyer($produit['id']) ?>">Supprimer</a>                
                 </td>
             </tr>
         <?php else : ?>
             <tr>
                 <td colspan="2" style="">
                     <p class="efface">
-                        <a href="Commande/retablir/<?= $this->nettoyer($produit['id']) ?>">
+                        <a href="Admincommande/retablir/<?= $this->nettoyer($produit['id']) ?>">
                             [ Rétablir ]
                         </a>
                         <?= $this->nettoyer($produit['nom_produit']) ?> effacé!
@@ -64,7 +64,7 @@
 <div class="listeProduits">
     <?php foreach ($produits as $produit): ?>    
         <div class="carte">
-            <form action="Commande/ajouter" method="post">
+            <form action="Admincommande/ajouter" method="post">
                 <h1><?= $this->nettoyer($produit['nom_produit']) ?></h1>
                 <p class="prix"><?= $this->nettoyer($produit['prix_unitaire']) ?> $</p>
                 <p><?= $this->nettoyer($produit['description_produit']) ?></p>

@@ -64,10 +64,10 @@ class ControleurAdminAccueil extends ControleurAdmin {
                 $this->requete->getsession()->setAttribut('erreur', '');
             }
             $this->commandeObj->setCommande($commandeObj);
-            $this->rediriger('Acceuil');
+            $this->rediriger('Adminaccueil');
         } else {
             $this->requete->getSession()->setAttribut('erreur', 'courriel');
-            $this->rediriger('Accueil', 'ajouter');
+            $this->rediriger('Adminaccueil', 'ajouter');
         }
     }
 

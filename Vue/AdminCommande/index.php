@@ -29,7 +29,7 @@
             <tr>
                 <td colspan="2" style="">
                     <p>
-                        <a href="Accueil/lire/<?= $this->nettoyer($produit['commande_id']) ?>">
+                        <a href="Adminaccueil/lire/<?= $this->nettoyer($produit['commande_id']) ?>">
                             [ Voir commande ]
                         </a>
                     </p>
@@ -39,8 +39,8 @@
             <tr>
                 <td colspan="2" style="">
                     <p class="efface">
-                        <a href="Utilisateurs">
-                            [ Se connecter pour rétablir ]
+                        <a href="Admincommande/retablir/<?= $this->nettoyer($produit['id']) ?>">
+                            [ Rétablir ]
                         </a>
                         <?= $this->nettoyer($produit['nom_produit']) ?> effacé!
                     </p>
